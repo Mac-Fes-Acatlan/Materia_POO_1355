@@ -1,0 +1,11 @@
+version: "3"
+services:
+
+  pyspark:
+    volumes:
+      - $PATH_LOCAL_USER:/home/jovyan/work
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8888:8888
