@@ -1,0 +1,21 @@
+gitversion: '3'
+
+services:
+  jupyter-scala:
+    image: beakerx/beakerx:latest
+    container_name: jupyter-scala
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/home/beakerx/notebooks
+    environment:
+      - GRANT_SUDO=yes
+      - beakerx_kernel_scala=true
+
+  jupyter-python:
+    image: jupyter/scipy-notebook:latest
+    container_name: jupyter-python
+    ports:
+      - "8889:8888"
+    volumes:
+      - ./notebooks:/home/jovyan/work
