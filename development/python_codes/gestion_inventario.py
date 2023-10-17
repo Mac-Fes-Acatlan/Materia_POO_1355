@@ -14,14 +14,48 @@ class Producto:
         self._categoria = categoria
         self._precio = precio
         self._status = status
+    
+    @property
+    def nombre(self):
+        return self._nombre
+    @nombre.setter
+    def nombre(self, valor: str):
+        self._nombre = valor
 
-        @property
-        def status(self):
-            return self._status
+    @property
+    def marca(self):
+        return self._marca
+    @marca.setter
+    def marca(self, valor: str):
+        self._marca = valor
 
-        @status.setter
-        def status(self, valor: str):
-            self._status = valor
+    @property
+    def sku(self):
+        return self._sku
+    @sku.setter
+    def sku(self, valor: str):
+        self._sku = valor
+
+    @property
+    def categoria(self):
+        return self._categoria
+    @categoria.setter
+    def categoria(self, valor: str):
+        self._categoria = valor
+
+    @property
+    def precio(self):
+        return self._precio
+    @precio.setter
+    def precio(self, valor: float):
+        self._precio = valor
+
+    @property
+    def status(self):
+        return self._status
+    @status.setter
+    def status(self, valor: str):
+        self._status = valor
 
 
 class AdministradorProducto:
@@ -38,11 +72,27 @@ class AdministradorProducto:
             precio = float(input("Ingrese el precio del producto: "))
             status = input("Ingrese el status del producto:")
             producto_obj = Producto(nombre, marca, sku, categoria, precio, status)
-            print(producto_obj.__dict__)
+            if self._validacion_existencia(sku) == True:
+                self._dict_prod_dis[sku]=producto_obj
+            else:
+                print('El producto ya se encuentra en stock ingresa uno nuevo')
+
+
         elif opcion_flujo == 2:
             pass
         else:
             pass
+
+    def _validacion_existencia(self, sku:str):
+        if len(self._dict_prod_dis)>0:
+            for _, elemento in self._dict_prod_dis.items():
+                if elemento.sku == sku:
+                    return False
+            return True
+        else:
+            return True
+         
+
 
 
 dict_producto_disponible = {}
