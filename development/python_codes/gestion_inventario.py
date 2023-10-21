@@ -62,9 +62,12 @@ class AdministradorProducto:
     def __init__(self, dict_prod_dis: dict, dict_prod_nodisp: dict):
         self._dict_prod_dis = dict_prod_dis
         self._dict_prod_nodisp = dict_prod_nodisp
+        self._dict_productos_eliminados={}
 
     def flujo_inventario(self, opcion_flujo: int):
+        
         if opcion_flujo == 1:
+            
             nombre = input("Ingrese el nombre del producto: ")
             marca = input("Ingrese la marca del producto: ")
             sku = input("Ingrese el sku del producto: ")
@@ -77,10 +80,13 @@ class AdministradorProducto:
             else:
                 print('El producto ya se encuentra en stock ingresa uno nuevo')
 
-
         elif opcion_flujo == 2:
-            pass
-        else:
+            sku = input("Ingrese el sku del producto a eliminar: ")
+            if not self._validacion_existencia(sku) == True:
+                self._dict_productos_eliminados[sku]=self._dict_prod_dis[sku]
+                del self._dict_prod_dis[sku]
+        
+        elif opcion_flujo==3:
             pass
 
     def _validacion_existencia(self, sku:str):
@@ -91,7 +97,14 @@ class AdministradorProducto:
             return True
         else:
             return True
-         
+    
+    def _imprimir_dict_disp(self):
+        print("================")
+        print("Los productos en el inventario son:")
+        for _, producto in self._dict_prod_dis.items():
+            print("\tEl nombre del producto es:")
+            print("\tLa marca es:")
+        print("================") 
 
 
 
@@ -112,4 +125,5 @@ while opc != 4:
         if opc in range(1, 5):
             break
         print("Opcion no valida")
+    
     administrador_obj.flujo_inventario(opc)
