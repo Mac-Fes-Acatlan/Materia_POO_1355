@@ -1,5 +1,7 @@
 from clases.administrador_producto import AdministradorProducto
 
+import pandas as pd
+
 if __name__ == "__main__":
 
     dict_producto_disponible = {}
@@ -20,4 +22,6 @@ if __name__ == "__main__":
                 break
             print("Opcion no valida")
 
-        administrador_obj.flujo_inventario(opc)
+        dict_data = administrador_obj.flujo_inventario(opc)
+        df_data = pd.DataFrame(dict_data)
+        df_data.to_csv("valores_productos.csv", index=False)
