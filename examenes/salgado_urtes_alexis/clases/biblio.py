@@ -69,7 +69,7 @@ class Biblioteca:
                 print("El libro se ha hallado.")
                 print(f"{libro.titulo}, {libro.autor}, {libro.genero}, {libro.copias_disp}")
                 return
-            print("El libro no se encuentra en la biblioteca.")
+        print("El libro no se encuentra en la biblioteca.")
     def __repr__(self) -> str:
         for libro in self._libros:
             print(f"{libro._titulo}, {libro._autor}, {libro._genero}, {libro._copias_disp}")
