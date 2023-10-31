@@ -1,0 +1,264 @@
+class Autor:
+    def __init__(self, autor: str) -> None:
+        self._autor = autor
+        self._obras = []
+
+    @property
+    def nombre(self):
+        return self._autor
+    
+    @nombre.setter
+    def nombre(self, nombre):
+        self._autor = nombre
+
+    def agregar_obras(self, coleccion: list):
+        for libro in coleccion:
+            self._obras.append(libro)
+
+class Biblioteca:
+    def __init__(self): 
+        self._usuarios = [] 
+        self._escritores = [] 
+        self._libros = [] 
+
+    def agregar_libro(self, objeto_libro):
+        for libro in self._libros:
+            if libro.titulo == objeto_libro.titulo:
+                print("Ese libro ya existe en la biblioteca.")
+                return
+        self._libros.append(objeto_libro)
+        print(f"El libro '{objeto_libro.titulo}' del autor '{objeto_libro.escritor}' se añadió exitosamente a la biblioteca.")
+
+    def agregar_usuario(self, objeto_usuario): 
+        for usuario in self._usuarios:
+            if usuario.nombre == objeto_usuario.nombre:
+                print(f"El usuario '{objeto_usuario.nombre}' ya existe")
+                return
+        self._usuarios.append(objeto_usuario)
+        print(f"El usuario '{objeto_usuario.nombre}' se ha agregado exitosamente")
+    
+    def agregar_escritor(self, objeto_escritor):
+        for escritor in self._escritores:
+            if escritor.nombre == objeto_escritor.nombre:
+                print("Ese escritor ya existe en nuestra biblioteca")
+                return
+        self._escritores.append(objeto_escritor)
+
+    def buscar(self, busqueda: str):
+        found = False
+        for libro in self._libros:
+            if (libro.titulo.find(busqueda) != -1) or \
+               (libro.escritor.find(busqueda) != -1) or \
+               (libro.genero.find(busqueda) != -1):
+                found = True
+                print("Libro encontrado.")
+                print(f"Título: {libro.titulo}, Autor: {libro.escritor}, Género: {libro.genero}, Disponibilidad: {libro.disponibilidad}")
+        if not found:
+            print("El libro que ingresaste no se encuentra en la biblioteca.")
+    
+    def __str__(self) -> str:
+        result = ""
+        for libro in self._libros:
+            result += f"Titulo: {libro.titulo}, Autor: {libro.escritor}, Genero: {libro.genero}, Disponibilidad: {libro.disponibilidad}\n"
+        return result
+
+class Libro:
+    def __init__(self, titulo: str, escritor: str, genero: str, disponibilidad: int) -> None:
+        self._titulo = titulo
+        self._escritor = escritor
+        self._genero = genero
+        self._disponibilidad = disponibilidad
+
+    @property
+    def titulo(self):
+        return self._titulo
+
+    @titulo.setter
+    def titulo(self, nuevo_titulo: str):
+        self._titulo = nuevo_titulo
+
+    @property
+    def escritor(self):
+        return self._escritor
+
+    @escritor.setter
+    def escritor(self, escritor: str):
+        self._escritor = escritor
+
+    @property
+    def genero(self):
+        return self._genero
+
+    @genero.setter
+    def genero(self, agregar_genero: str):
+        self._genero = agregar_genero
+
+    @property
+    def disponibilidad(self):
+        return self._disponibilidad
+
+    def restar_unidad(self):
+        if self._disponibilidad > 0:
+            self._disponibilidad -= 1
+            return
+        print("No hay copias para prestar de este libro.")
+        return
+    
+    def sumar_unidad(self):
+        self._disponibilidad += 1
+        return
+
+class RegistroInteracciones: 
+    def __init__(self, biblioteca):
+        self._libros_prestados = []
+        self._libros_devueltos = []
+        self.biblioteca = biblioteca 
+
+    def verificar_usuario(self, nombre: str):
+        for usuario in self.biblioteca._usuarios:
+            if usuario.nombre == nombre:
+                return True
+        return False
+    
+    def verificar_libro(self, titulo: str):
+        for libro in self.biblioteca._libros:
+            if libro.titulo == titulo:
+                return True
+        return False
+
+    def prestar_libro(self, titulo_libro: str, nombre_usuario: str):
+        for libro in self.biblioteca._libros:
+            if libro.titulo == titulo_libro:
+                if self.prestado(titulo_libro, nombre_usuario):
+                    print(f"El usuario '{nombre_usuario}' tiene el libro '{libro.titulo}' en préstamo.")
+                    return 
+                if libro.disponibilidad > 0:
+                    self._libros_prestados.append((nombre_usuario, libro.titulo)) 
+                    libro.restar_unidad() 
+                    print(f"Al usuario '{nombre_usuario}' se le prestó el libro '{libro.titulo}'.")
+                    return
+        print(f"El libro '{libro.titulo}' no está disponible para su préstamo.")
+        return
+
+    def devolver_libro(self, titulo_libro: str, nombre: str):
+        for usuario, libro in self._libros_prestados:
+            if usuario == nombre and libro == titulo_libro:
+                for libro in self.biblioteca._libros:
+                    if libro.titulo == titulo_libro:
+                        libro.sumar_unidad()
+                print(f"El usuario '{nombre}' devolvió el libro '{titulo_libro}'.")
+                self._libros_devueltos.append((nombre, titulo_libro))
+                return
+        print(f"El usuario '{nombre}' no solicitó el libro '{titulo_libro}'.")
+        return
+
+    def prestado(self, titulo_libro: str, nombre_usuario: str) -> bool:
+        for usuario, libro in self._libros_prestados:
+            if usuario == nombre_usuario and libro == titulo_libro:
+                return True
+        return False
+
+class Usuario:
+    def __init__(self, nombre: str) -> None:
+        self._nombre = nombre
+        
+    @property
+    def nombre(self):
+        return self._nombre
+    
+    @nombre.setter
+    def nombre(self, nombre_actualizado: str):
+        self._nombre = nombre_actualizado
+
+# Menú principal
+opcion: int 
+biblioteca = Biblioteca()
+registro = RegistroInteracciones(biblioteca)
+
+while True:
+    print("=======================================================================================================")
+    print("Sistema Biblioteca")
+    print("1. Añadir un libro")
+    print("2. Crear un usuario")
+    print("3. Agregar un escritor")
+    print("4. Prestar o devolver libro")
+    print("5. Ver registros de libros prestados o devueltos")
+    print("6. Ver catálogo de libros")
+    print("7. Buscar libro")
+    print("8. Salir")
+    opcion = int(input("Ingrese su opción: "))
+    
+    if opcion == 1:
+        titulo = input("Ingrese el título: ")
+        escritor = input("Ingrese el autor: ")
+        genero = input("Ingrese el género: ")
+        copias_disp = int(input("Ingrese la disponibilidad: "))
+        libro = Libro(titulo, escritor, genero, copias_disp)
+        biblioteca.agregar_libro(libro)
+
+    elif opcion == 2:
+        nombre = input("Ingrese el nombre del nuevo usuario: ")
+        usuario = Usuario(nombre)
+        biblioteca.agregar_usuario(usuario)
+
+    elif opcion == 3:
+        obras_parametro = []
+        nombre = input("Ingrese el nombre del autor: ")
+        escritor = Autor(nombre)
+        num_obras = int(input("¿Cuántos libros vas a agregar para ese autor?: "))
+        for i in range(num_obras):
+            titulo = input("Ingrese el título: ")
+            genero = input("Ingrese el género: ")
+            copias_disp = int(input("¿Cuántas copias disponibles hay?: "))
+            libro = Libro(titulo, nombre, genero, copias_disp)
+            biblioteca.agregar_libro(libro)
+            obras_parametro.append(libro)
+        escritor.agregar_obras(obras_parametro)      
+
+    elif opcion == 4:
+        print("1. Pedir prestado un libro")
+        print("2. Devolver un libro")
+        devolver_prestado = int(input("Ingrese su opción: "))
+        if devolver_prestado == 1:
+            nombre_usuario = input("Ingrese su nombre de usuario: ")
+            existe_usuario = registro.verificar_usuario(nombre_usuario)
+            if not existe_usuario:
+                print("No existe este usuario.")
+                continue 
+            nombre_libro = input("Dame el título del libro que quieres pedir prestado: ")
+            if not registro.verificar_libro(nombre_libro):
+                print("Ese libro no existe.")
+                continue
+            registro.prestar_libro(nombre_libro, nombre_usuario)
+
+        elif devolver_prestado == 2:
+            nombre_usuario = input("Ingrese su nombre de usuario: ")
+            existe_usuario = registro.verificar_usuario(nombre_usuario)
+            if not existe_usuario:
+                print("No existe el usuario.")
+                continue 
+            nombre_libro = input("Dame el título del libro que quieres devolver: ")
+            registro.devolver_libro(nombre_libro, nombre_usuario)
+
+        else:
+            print("Opción inválida.")
+
+    elif opcion == 5:
+        for usuario, libro in registro._libros_prestados:
+            print(f"El '{usuario}' pidió el libro '{libro}'")
+        for usuario, libro in registro._libros_devueltos:
+            print(f"El '{usuario}' devolvió el libro '{libro}'")
+
+    elif opcion == 6:
+        print(biblioteca)
+    
+    elif opcion == 7:
+        busqueda = input("Ingresa el título o autor o género para buscar un libro: ")
+        biblioteca.buscar(busqueda)
+
+    elif opcion == 8:
+        print("¡Gracias por usar la biblioteca!") 
+        break
+    
+    else:
+        print("Opción no válida.")
