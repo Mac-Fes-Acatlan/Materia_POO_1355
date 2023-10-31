@@ -122,13 +122,13 @@ class Biblioteca:
 
         if opcion == 3:
             buscar_libro = input("\nIngrese el título del libro:").lower()
-            self._buscar_titulo(buscar_libro)
-            opc = input("Sacar libro[S/N]:").lower()
-            if opc == "S" or opc == "s":
-                ids = input("Ingresa tu ID:")
-                self._prestar_libro(buscar_libro, ids)
-            else:
-                pass
+            if self._buscar_titulo(buscar_libro)!=False:
+                opc = input("Sacar libro[S/N]:").lower()
+                if opc == "S" or opc == "s":
+                    ids = input("Ingresa tu ID:")
+                    self._prestar_libro(buscar_libro, ids)
+                else:
+                    pass
 
         if opcion == 4:
             devolver_libro = input("\nIngresa el título del libro que vas a devolver:").lower()
@@ -169,8 +169,12 @@ class Biblioteca:
         if libro_busc in self._libros_stock["Titulo"]:
             index = self._libros_stock["Titulo"].index(libro_busc)
             print("Cantidad de libros disponibles:", self._libros_stock["Disponibilidad"][index])
+        elif libro_busc in self._libros_stock["Autor"]:
+            index=self._libros_stock["Autor"].index(libro_busc)
+            print("Obras del autor:",self._libros_stock["Titulo"][index])
+            print("Cantidad de libros disponibles:",self._libros_stock["Disponibles"][index])
         else:
-            print("El libro no se encuentra")
+            return False
 
     def _existencia_usuario(self, id):
         if id in self._usuarios_regis["ID"]:
