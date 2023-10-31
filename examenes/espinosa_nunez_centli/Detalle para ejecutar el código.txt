@@ -1,0 +1,33 @@
+Detalle para ejecutar el código
+1. Abrir Visual Studio Code
+2. Abrir la carpeta donde clonamos el repositorio
+3. Abrir una nueva terminal 
+4. Poner cd exámenes para dirigirnos a la carpeta 
+Detalle de la funcionalidad del código
+El código implementa un sistema de biblioteca utilizando Programación Orientada a Objetos en Python. Las clases de recomendación son : Libro, Usuario, Autor, RegistroInteracciones y Biblioteca, cada una con sus respectivos atributos y métodos.
+El código está en un solo archivo, sin embargo, cumple con el paradigma POO.
+Funcionalidades que tiene el programa:
+•	Añadir un libro
+•	Crear un usuario
+•	Agregar un escritor
+•	Prestar o devolver libro
+•	Ver registros de libros prestados o devueltos
+•	Ver catálogo de libros
+•	Buscar libro
+Flujo del código
+NOTA: Si bien podemos empezar con cualquier acción en el menú, es necesario empezar añadiendo usuarios o libros, puesto que sin el primero no tendremos forma de a quien hacer un préstamo y sin lo segundo no tendremos libros por prestar.
+Mostraré los pasos de manera secuencial.
+Se despliega el menú y debemos elegir una opción.
+Damos como opción 1 y se despliega la información que debemos añadir al libro (título, autor, género y disponibilidad).
+Una vez terminado, regresamos al menú inicial. Ahora seleccionamos opción 2.
+Nos dirige a la clase Usuario en la cual sólo pondremos un nombre para identificarnos.
+Nuevamente volvemos al menú de inicio.
+Ahora damos la opción 3, la cual nos permite ingresar el nombre de un autor, así como el número de ejemplares de éste.
+Nos pedirá título, género y copias disponibles tantas ejemplares hayamos puesto por cada uno.
+Al finalizar la acción anterior, nos redirigiremos al menú principal donde esta vez pondremos como opción el número 4, el cual habilita la función de prestar o devolver un libro. En ambos casos para poder hacer cualquiera de esas dos acciones nos pedirá tanto el nombre como el título del libro.
+La siguiente opción, la 5, nos permite ver el flujo de libros prestados o devueltos por los usuarios.
+De vuelta en el menú de origen, si seleccionamos la opción 6 esta nos desplegará la lista con los libros o autores que hayamos agregado previamente.
+También tenemos la opción de buscar un libro ya sea por título, autor o género, lo cual podemos hacer en la opción 7.
+Finalmente tenemos una opción para salir del sistema el cual nos da un mensaje final.
+El código implementa que sólo se ejecute con alguna de estas opciones, por lo cual no saldremos de este hasta haber elegido una opción válida.
+
