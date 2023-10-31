@@ -1,6 +1,6 @@
 # Manual para el uso del proyecto de Gestión de Biblioteca
 
-## Alexis Salgado Urtes
+## Alexis Salgado Urtes - 27 de octubre de 2023
 
 **Resumen:** dadas las [instrucciones](/Examen_Unidad_3_4_POO.pdf) del profesor, se han creado 5 clases (*basadas en las sugerencias del profesor*).
 Su funcionamiento puede verse en en al archivo **main.py**.
