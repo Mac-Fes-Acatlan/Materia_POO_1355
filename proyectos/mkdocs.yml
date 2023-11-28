@@ -24,7 +24,12 @@ nav:
     - Esquema de funcionamiento: Equipo_5/esquema.md
     - Ejemplos de funcionamiento: Equipo_5/Ejemplo.md
     - Acerca de: Equipo_5/Acerca_de.md
-    
+  
+  - Equipo Toscos:
+    - Desarrollo del proyecto: toscos_inc_equipo_1/mkdocs_site/docs/index.md
+    - Acerca del Proyecto: toscos_inc_equipo_1/mkdocs_site/docs/acerca_de.md
+    - Instrucciones del proyecto: toscos_inc_equipo_1/mkdocs_site/docs/Instrucciones.md
+
 
 theme:
   scheme: default
