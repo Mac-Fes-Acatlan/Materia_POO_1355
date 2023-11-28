@@ -12,7 +12,17 @@ extra_css:
 nav:
   - Home: index.md
   - Equipo 2 :  
-    - Planteamiento del Problema: Equipo_2/Planteamiento.md
+    - Home: Equipo_2/Prueba7/index.md
+    - UserGuide : Equipo_2/Prueba7/Guia_Usuario.md
+    - AdminGuide : Equipo_2/Prueba7/Admin_Guide.md
+    - Diagramas : Equipo_2/Prueba7/Diagramas.md
+    - CODE_Persona : Equipo_2/Prueba7/Persona.md
+    - CODE_Menú : Equipo_2/Prueba7/Menu.md
+    - CODE_Pedido: Equipo_2/Prueba7/Pedido.md
+    - CODE_Ingrediente : Equipo_2/Prueba7/Ingrediente.md
+    - CODE_Interfaces: Equipo_2/Prueba7/Interfaces.md
+    - CODE_Alimento: Equipo_2/Prueba7/Alimento.md
+    - CODE_Admin_Producto: Equipo_2/Prueba7/Admin_Producto.md
           
   - Equipo 5:
     - Verificador de llaves palindromas: Equipo_5/Planteamiento.md

@@ -1,0 +1,11 @@
+ID; Alimento; Descripcion; Precio
+1; Hamburguesa Clasica; Carne molida,Pan de hamburguesa, Queso;78
+2; Hamburguesa con Queso; Carne molida, Pan de hamburguesa, Cebolla, Queso cheddar, Queso;89
+3; Hamburguesa Vegetariana; Pan integral, Portobello asado, Queso, Queso feta;68
+4; Hamburguesa BBQ; Carne molida, Pan de hamburguesa, Cebolla caramelizada, Queso cheddar, Salsa BBQ;82
+5; Hamburguesa de Pescado; Filete de pescado, Pan de hamburguesa, Queso;59
+6; Hamburguesa de Pollo; Pechuga de pollo, Pan de hamburguesa, Queso;69
+7; Hamburguesa de Portobello; Portobello asado, Pan de hamburguesa, Queso cheddar;46
+8; Hamburguesa Gourmet; Carne molida, Pan integral, Cebolla caramelizada, Queso cheddar, Salsa BBQ;84
+9; Agua; Agua;35
+10; Refresco; Refresco;25

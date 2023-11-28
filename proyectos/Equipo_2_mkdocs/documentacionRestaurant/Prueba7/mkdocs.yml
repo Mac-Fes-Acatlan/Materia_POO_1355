@@ -1,0 +1,22 @@
+site_name: RestaurantPOO
+site_url: https://restaurantepoo.com/
+
+nav:
+  - Home: index.md
+  - UserGuide : Guia_Usuario.md
+  - AdminGuide : Admin_Guide.md
+  - Diagramas : Diagramas.md
+  - CODE_Persona : Persona.md
+  - CODE_Menú : Menu.md
+  - CODE_Pedido: Pedido.md
+  - CODE_Ingrediente : Ingrediente.md
+  - CODE_Interfaces: Interfaces.md
+  - CODE_Alimento: Alimento.md
+  - CODE_Admin_Producto: Admin_Producto.md
+
+
+
+theme: readthedocs
+
+
+
