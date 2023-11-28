@@ -99,3 +99,4 @@ CodigoLibro |numeroUsuario  |      fecha        |
 Y por ultimo tenemos la opccion 7 para salir del sisteama. 
 
 **NOTA: *Todos los datos igresados se almacenan en 3 archivos CSV, llamados "prestamos", "libros" y "usuarios"***
+

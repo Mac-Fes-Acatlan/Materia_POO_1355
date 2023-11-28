@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://PinguiBuckling.com/Admin_Producto/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>CODE_Admin_Producto - RestaurantPOO</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "CODE_Admin_Producto";
+        var mkdocs_page_input_path = "Admin_Producto.md";
+        var mkdocs_page_url = "/Admin_Producto/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> RestaurantPOO
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Guia_Usuario/">UserGuide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Admin_Guide/">AdminGuide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Diagramas/">Diagramas</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Persona/">CODE_Persona</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Menu/">CODE_Menú</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Pedido/">CODE_Pedido</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Ingrediente/">CODE_Ingrediente</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Interfaces/">CODE_Interfaces</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Alimento/">CODE_Alimento</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">CODE_Admin_Producto</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">RestaurantPOO</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">CODE_Admin_Producto</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="clase-administrador-de-productos">Clase Administrador de Productos</h1>
+<pre><code class="language-py">import pandas as pd
+from Ingrediente import Ingrediente
+
+class AdministradorProducto:
+    _lista_disponible = [Ingrediente]
+    _lista_no_disponible = [Ingrediente]
+    def __init__(self) -&gt; None:
+        pass
+
+    @property
+    def lista_disponible(self):
+        return self._lista_disponible
+
+    @lista_disponible.setter
+    def lista_disponible(self, lista:list):
+        self._lista_disponible = lista
+
+    @property
+    def lista_no_disponible(self):
+        return self._lista_no_disponible
+
+    @lista_no_disponible.setter
+    def lista_no_disponible(self, lista:list):
+        self._lista_no_disponible = lista
+
+    def crear_listas(self) -&gt; None:
+        lista_aux = []
+        df_ingredientes = pd.read_csv(&quot;development//clases_codigos//archives//IngredientesFinal.csv&quot;)
+        lista_aux = [df_ingredientes.to_numpy().tolist]
+        for i in range(len(lista_aux)):
+           ingrediente_aux = Ingrediente(lista_aux[i][1],
+                                         lista_aux[i][3],
+                                         lista_aux[i][2],
+                                         lista_aux[i][4],
+                                         lista_aux[i][5])
+           if ingrediente_aux.disponibilidad == True:
+               self._lista_disponible.append(ingrediente_aux)
+           else:
+               self._lista_no_disponible.append(ingrediente_aux)
+
+    def mostrar_disponibles(self) -&gt; None:
+        df_disponible = pd.DataFrame(self._lista_disponible)
+        df_disponible.head(30)
+
+    def mostrar_no_disponible(self) -&gt; None:
+        df_no_disponible = pd.DataFrame(self._lista_no_disponible)
+        df_no_disponible.head(30)
+
+    def modificar_inventario(self) -&gt; bool:
+
+        while(True):
+            identificador = input(&quot;Ingrese el nombre del producto a modificar (Ingrese 0 si desea salir):&quot;)
+            if  identificador != &quot;0&quot;:   
+                comprobar = self._encontrar_producto(identificador)
+                if comprobar &gt; 0:
+                    self._modificar_disponible(comprobar-1)
+                elif comprobar &lt; 0:
+                    self._modificar_no_disponible((comprobar*-1)-1)
+                else:
+                    print(&quot;Error. El producto ingresado no existe.&quot;)
+            else:
+                return False
+
+
+    def _encontrar_producto(self, 
+                            producto:str) -&gt; int:
+        for i in range(len(self._lista_disponible)):
+            if self._lista_disponible[i].nombre == producto:
+                return i+1
+        for j in range(len(self._lista_no_disponible)):
+            if self._lista_no_disponible[j].nombre == producto:
+                return -j-1
+        return 0
+
+    def _modificar_disponible(self, identificador:int) -&gt; bool:
+        while(True):
+                print(&quot;Opciones a modificar:&quot;)
+                print(&quot;1) Nombre.&quot;,
+                    &quot;2) Cantidad.&quot;,
+                    &quot;3) Tipo.&quot; ,
+                    &quot;4) Precio de venta.&quot;, 
+                    &quot;5) Precio de compra.&quot;,
+                    &quot;6) En caso de que desee salir, presione \&quot;6\&quot;.&quot;,
+                    sep = &quot;\n&quot;)
+                opcion = int(input(&quot;Ingrese el dato a cambiar:&quot;))
+                if opcion == 1:
+                    print(&quot;Nombre antiguo: &quot; + self.lista_disponible[identificador].nombre)
+                    nuevo_nombre = input(&quot;Ingrese el nuevo nombre del producto:&quot;)
+                    self._lista_disponible[identificador].nombre(nuevo_nombre)
+                    print(&quot;Sus cambios se realizaron con éxito.&quot;)
+                elif opcion == 2:
+                    print(&quot;Cantidad antigua: &quot; + self.lista_disponible[identificador].cantidad)
+                    nueva_cantidad = float(input(&quot;Ingrese la nueva cantidad del producto (en kg):&quot;))
+                    self.lista_disponible[identificador].cantidad(nueva_cantidad)
+                    print(&quot;Sus cambios se realizaron con éxito.&quot;)
+                elif opcion == 3:
+                    print(&quot;Tipo antiguo: &quot; + self.lista_disponible[identificador].tipo)
+                    nuevo_tipo = input(&quot;Ingrese el nuevo tipo del producto:&quot;)
+                    self.lista_disponible[identificador].tipo(nuevo_tipo)
+                    print(&quot;Sus cambios se realizaron con éxito.&quot;)
+                elif opcion == 4:
+                    print(&quot;Precio de venta antiguo: $&quot; + self.lista_disponible[identificador].precio_venta)
+                    nuevo_precio_venta = float(input(&quot;Ingrese el nuevo precio de venta:&quot;))
+                    self.lista_disponible[identificador].precio_venta(nuevo_precio_venta)
+                    print(&quot;Sus cambios se realizaron con éxito.&quot;)
+                elif opcion == 5:
+                    print(&quot;Precio de compra antiguo: $&quot; + self.lista_disponible[identificador].precio_compra)
+                    nuevo_precio_compra = float(input(&quot;Ingrese el nuevo precio de compra:&quot;))
+                    self.lista_disponible[identificador].precio_compra(nuevo_precio_compra)
+                    print(&quot;Sus cambios se realizaron con éxito.&quot;)
+                elif opcion == 6:
+                    print(&quot;Adios.&quot;)
+                    return True
+                else:
+                    print(&quot;Ingrese un dato válido.&quot;)
+
+    def _modificar_no_disponible(self, identificador:int) -&gt; bool:
+        while(True):
+                print(&quot;Opciones a modificar:&quot;)
+                print(&quot;1) Nombre.&quot;,
+                    &quot;2) Cantidad.&quot;,
+                    &quot;3) Tipo.&quot; ,
+                    &quot;4) Precio de venta.&quot;, 
+                    &quot;5) Precio de compra.&quot;,
+                    &quot;6) En caso de que desee salir, presione \&quot;6\&quot;.&quot;,
+                    sep = &quot;\n&quot;)
+                opcion = int(input(&quot;Ingrese el dato a cambiar:&quot;))
+                if opcion == 1:
+                    print(&quot;Nombre antiguo: &quot; + self.lista_no_disponible[identificador].nombre)
+                    nuevo_nombre = input(&quot;Ingrese el nuevo nombre del producto:&quot;)
+                    self._lista_no_disponible[identificador].nombre(nuevo_nombre)
+                    print(&quot;Sus cambios se realizaron con éxito.&quot;)
+                elif opcion == 2:
+                    print(&quot;Cantidad antigua: &quot; + self.lista_no_disponible[identificador].cantidad)
+                    nueva_cantidad = float(input(&quot;Ingrese la nueva cantidad del producto (en kg):&quot;))
+                    self.lista_no_disponible[identificador].cantidad(nueva_cantidad)
+                    print(&quot;Sus cambios se realizaron con éxito.&quot;)
+                elif opcion == 3:
+                    print(&quot;Tipo antiguo: &quot; + self.lista_no_disponible[identificador].tipo)
+                    nuevo_tipo = input(&quot;Ingrese el nuevo tipo del producto:&quot;)
+                    self.lista_no_disponible[identificador].tipo(nuevo_tipo)
+                    print(&quot;Sus cambios se realizaron con éxito.&quot;)
+                elif opcion == 4:
+                    print(&quot;Precio de venta antiguo: $&quot; + self.lista_no_disponible[identificador].precio_venta)
+                    nuevo_precio_venta = float(input(&quot;Ingrese el nuevo precio de venta:&quot;))
+                    self.lista_no_disponible[identificador].precio_venta(nuevo_precio_venta)
+                    print(&quot;Sus cambios se realizaron con éxito.&quot;)
+                elif opcion == 5:
+                    print(&quot;Precio de compra antiguo: $&quot; + self.lista_no_disponible[identificador].precio_compra)
+                    nuevo_precio_compra = float(input(&quot;Ingrese el nuevo precio de compra:&quot;))
+                    self.lista_no_disponible[identificador].precio_compra(nuevo_precio_compra)
+                    print(&quot;Sus cambios se realizaron con éxito.&quot;)
+                elif opcion == 6:
+                    print(&quot;Adios.&quot;)
+                    return True
+                else:
+                    print(&quot;Ingrese un dato válido.&quot;)
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Alimento/" class="btn btn-neutral float-left" title="CODE_Alimento"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Alimento/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
