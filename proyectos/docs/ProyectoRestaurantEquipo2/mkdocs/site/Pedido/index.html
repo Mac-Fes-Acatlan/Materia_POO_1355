@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://PinguiBuckling.com/Pedido/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>CODE_Pedido - RestaurantPOO</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "CODE_Pedido";
+        var mkdocs_page_input_path = "Pedido.md";
+        var mkdocs_page_url = "/Pedido/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> RestaurantPOO
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Guia_Usuario/">UserGuide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Admin_Guide/">AdminGuide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Diagramas/">Diagramas</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Persona/">CODE_Persona</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Menu/">CODE_Menú</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">CODE_Pedido</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Ingrediente/">CODE_Ingrediente</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Interfaces/">CODE_Interfaces</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Alimento/">CODE_Alimento</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Admin_Producto/">CODE_Admin_Producto</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">RestaurantPOO</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">CODE_Pedido</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="pedido">Pedido</h1>
+<pre><code class="language-py">from Alimento import Alimento
+from Menu import Menu
+
+class Pedido:
+    _estatus = str
+    def __init__(self,
+                 id:int,
+                 nombre:str,
+                 lista_alimentos:dict(int),
+                 menu:Menu) -&gt; None:
+        self._id = id
+        self._nombre_cliente = nombre
+        self._lista_alimentos = lista_alimentos
+        self._menu = menu
+        self._precio = self._calcular_precio()
+
+
+    @property
+    def id(self):
+        return self._id
+    @id.setter
+    def id(self, new_id):
+        self._id = new_id
+    @property
+    def lista_alimentos(self):
+        return self._lista_alimentos
+    @lista_alimentos.setter
+    def lista_alimentos(self, new_lista_alimentos):
+        self._lista_alimentos = new_lista_alimentos
+    @property
+    def menu(self):
+        return self._menu
+    @property
+    def precio(self):
+        return self._precio
+    @property
+    def estatus(self):
+        return self._estatus
+    @estatus.setter
+    def estatus(self, new_estatus):
+        self._estatus = new_estatus
+
+    def _calcular_precio(self) -&gt; float:
+        precio = float(0)
+        for clave in self.lista_alimentos.keys():
+            if self.lista_alimentos.get(clave) !=0:
+                for i in range(len(self.menu.lista_alimentos)):
+                    if clave == self.menu.lista_alimentos[i].id:
+                        precio += self.menu.lista_alimentos[i].precio*self.lista_alimentos.get(clave)
+                        break
+        return precio
+
+    def mostrar_pedido(self) -&gt; None:
+        print(
+            &quot;El ID del pedido es:\t\t&quot; + self.id,
+            &quot;A nombre de:\t\t&quot; + self._nombre_cliente,
+            sep ='\n'
+        )
+        print(&quot;Los alimentos son:&quot;)
+        for clave in self.lista_alimentos.keys():
+            if self.lista_alimentos.get(clave) !=0 :
+                for i in range(len(self.menu.lista_alimentos)):
+                    if self.menu.lista_alimentos[i].id == clave:
+                        print(self.menu.lista_alimentos[i].nombre + &quot;: \t\t&quot; + self.lista_alimentos.get(i))
+                        break
+        print(&quot;Total a pagar:\t\t$&quot; + self.precio) 
+
+</code></pre>
+<h1 id="administrador-de-pedidos">Administrador de Pedidos</h1>
+<pre><code class="language-py">from Pedido import Pedido
+import pandas as pd
+
+class AdministradorPedidos:
+    _pedidos_df = pd.DataFrame
+
+    def __init__(self) -&gt; None:
+        pass
+
+    @property
+    def pedidos_df(self):
+        return self._pedidos_df
+
+    def crear_df(self) -&gt; bool:
+        self.pedidos_df = pd.read_csv(&quot;archives//Pedidos.csv&quot;)
+
+    def mostrar_pedidos(self):
+        self.pedidos_df.head(len(self.pedidos_df))
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Menu/" class="btn btn-neutral float-left" title="CODE_Menú"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Ingrediente/" class="btn btn-neutral float-right" title="CODE_Ingrediente">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Menu/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Ingrediente/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

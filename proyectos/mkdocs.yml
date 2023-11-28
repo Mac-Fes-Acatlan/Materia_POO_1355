@@ -24,7 +24,20 @@ nav:
     - Esquema de funcionamiento: Equipo_5/esquema.md
     - Ejemplos de funcionamiento: Equipo_5/Ejemplo.md
     - Acerca de: Equipo_5/Acerca_de.md
-    
+  
+  - Proyecto Restaurant:
+    - Home: ProyectoRestaurantEquipo2/docs/index.md
+    - UserGuide : ProyectoRestaurantEquipo2/docs/Guia_Usuario.md
+    - AdminGuide : ProyectoRestaurantEquipo2/docs/Admin_Guide.md
+    - Diagramas : ProyectoRestaurantEquipo2/docs/Diagramas.md
+    - CODE_Persona : ProyectoRestaurantEquipo2/docs/Persona.md
+    - CODE_Menú : ProyectoRestaurantEquipo2/docs/Menu.md
+    - CODE_Pedido: ProyectoRestaurantEquipo2/docs/Pedido.md
+    - CODE_Ingrediente : ProyectoRestaurantEquipo2/docs/Ingrediente.md
+    - CODE_Interfaces: ProyectoRestaurantEquipo2/docs/Interfaces.md
+    - CODE_Alimento: ProyectoRestaurantEquipo2/docs/Alimento.md
+    - CODE_Admin_Producto: ProyectoRestaurantEquipo2/docs/Admin_Producto.md
+
 
 theme:
   scheme: default

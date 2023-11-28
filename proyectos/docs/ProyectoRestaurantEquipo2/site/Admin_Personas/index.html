@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://PinguiBuckling.com/Admin_Personas/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Clase Administrador de Personas - RestaurantPOO</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Clase Administrador de Personas";
+        var mkdocs_page_input_path = "Admin_Personas.md";
+        var mkdocs_page_url = "/Admin_Personas/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> RestaurantPOO
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Guia_Usuario/">UserGuide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Admin_Guide/">AdminGuide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Diagramas/">Diagramas</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Persona/">CODE_Persona</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Menu/">CODE_Menú</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Pedido/">CODE_Pedido</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Ingrediente/">CODE_Ingrediente</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Interfaces/">CODE_Interfaces</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Alimento/">CODE_Alimento</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Admin_Producto/">CODE_Admin_Producto</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">RestaurantPOO</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Clase Administrador de Personas</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="clase-administrador-de-personas">Clase Administrador de Personas</h1>
+<pre><code class="language-py">from InterfazPersona import IntPersona
+from Persona import Persona
+from PersonaAdmin import PersonaAdmin
+from PersonaCliente import PersonaCliente
+import pandas as pd
+
+class AdministradorPersonas:
+
+    def __init__(self) -&gt; None:
+        pass
+
+    _df_admin = pd.DataFrame
+
+    _df_cliente = pd.DataFrame
+
+    def mostrar_administradores(self):
+     self._df_admin = pd.read_csv(&quot;development//clases_codigos//archives//Administradores.csv&quot;)
+     self._df_admin.head(len(self._df_admin))
+
+    def mostrar_clientes(self):
+     self._df_cliente = pd.read_csv(&quot;development//clases_codigos//archives//Clientes.csv&quot;)
+     self._df_cliente.head(len(self._df_cliente))
+
+    def inicio_sesion_admin(self) -&gt; None:
+        while(True):
+            print(&quot;Ingrese sus datos de inicio de sesión: (ingrese 3 para cerrar el programa)&quot;)
+            user_attempt = str(input(&quot;Usuario: &quot;))
+            pass_attempt = str(input(&quot;Contraseña: &quot;))
+
+            if user_attempt == &quot;3&quot; :
+                return False
+
+            for i in range(len(self._df_admin)):
+                if self._df_admin.iloc[i][1] == user_attempt :
+                    if self._df_admin.iloc[i][2] == pass_attempt :
+                        aux = True
+                        break
+                    else :
+                        aux = False
+                        break
+
+            if aux == True :
+                break
+            if aux == False :
+                print(&quot;Error a la hora de ingresar el usuario o contraseña&quot;)
+
+            return True
+
+    def inicio_sesion_cliente(self) -&gt; None:
+        while(True):
+            print(&quot;Ingrese sus datos de inicio de sesión: (ingrese 3 para cerrar el programa)&quot;)
+            user_attempt = str(input(&quot;Usuario: &quot;))
+            pass_attempt = str(input(&quot;Contraseña: &quot;))
+
+            if user_attempt == &quot;3&quot; :
+                return False
+
+            for i in range(len(self._df_cliente)):
+                if self._df_cliente.iloc[i][1] == user_attempt :
+                    if self._df_cliente.iloc[i][2] == pass_attempt :
+                        aux = True
+                        break
+                    else :
+                        aux = False
+                        break
+
+            if aux == True :
+                break
+            if aux == False :
+                print(&quot;Error a la hora de ingresar el usuario o contraseña&quot;)
+
+        return True 
+
+    def registro_admin(self) -&gt; bool:
+
+         while(True):
+             print(&quot;Ingrese el número de lo que quiere hacer:&quot; ,
+                   &quot;1) Nuevo administrador&quot; ,
+                   &quot;2) Salir&quot; , 
+                   sep = &quot;\n&quot;)
+
+             x = int(input(&quot;:&quot;))
+
+             if x == 1:
+
+                aux = True
+
+                while aux == True:
+                    nuevo_usuario = str(input(&quot;Ingrese el usuario del administrador: (ingrese 3 para cancelar la operación)&quot;))
+                    self.usuario(nuevo_usuario)
+
+                    if nuevo_usuario == &quot;3&quot; :
+                        aux = False
+                        return False
+
+                    for i in range(len(self._df_admin)):
+                        if self._df_admin.iloc[i][1] == nuevo_usuario :
+                            print(&quot;El usuario ya está en uso, ingrese uno nuevo.&quot;)
+                            break
+                        if i == len(self._df_admin) - 1:
+                            aux = False 
+
+                nuevo_nombre = str(input(&quot;Ingrese el nombre del administrador: &quot;))
+                self.nombre(nuevo_nombre)
+
+                nuevo_password = str(input(&quot;Ingrese la contraseña del administrador: &quot;))
+                self.password(nuevo_password)
+
+                nuevo_direccion = str(input(&quot;Ingrese la dirección del administrador: &quot;))
+                self.direccion(nuevo_direccion)
+
+                nuevo_telefono = str(input(&quot;Ingrese teléfono del administrador: &quot;))
+                self.telefono(nuevo_telefono)
+
+                self.codigo(len(self._df_admin) + 1)
+
+                print(&quot;Los datos ingresados fueron:&quot;)
+                print(self.nombre)
+                print(self.usuario)
+                print(self.password)
+                print(self.direccion)
+                print(self.telefono)
+                print(self.codigo)
+
+                print(&quot;Si hay algún dato erroneo, favor de ingresar 1, si todos los datos son correctos ingresar 2&quot;)
+
+                while(True):
+                    y = int(input(&quot;:&quot;))
+                    if y == 1:
+                        print(&quot;Regresando al menú de opciones de usuario&quot;)
+                        break
+                    elif y == 2:
+                         df_aux_1 = pd.DataFrame({&quot;Nombre&quot;:self.nombre ,
+                                          &quot;usuario&quot;: self.usuario,
+                                          &quot;password&quot;: self.password,
+                                          &quot;dirección&quot;: self.direccion,
+                                          &quot;teléfono&quot;: self.telefono,
+                                          &quot;código&quot;: self.codigo})
+                         df_aux_2 = pd.concat([self._df_admin, df_aux_1])
+                         self._df_admin = df_aux_2
+                    else :
+                        print(&quot;Dato no válido. Regresando a la opción de selección.&quot;)
+
+             elif x == 2:
+                 break
+
+             else :
+                 print(&quot;Dato no válido. Regresando a la opción de selección.&quot;)
+
+             return True       
+
+    def registro_clientes(self) -&gt; None:
+         while(True):
+             print(&quot;Ingrese el número de lo que quiere hacer:&quot; ,
+                   &quot;1) Nuevo cliente&quot; ,
+                   &quot;2) Salir&quot; , 
+                   sep = &quot;\n&quot;)
+
+             x = int(input(&quot;:&quot;))
+
+             if x == 1:
+                aux = True
+
+                while aux == True:
+                    nuevo_usuario = str(input(&quot;Ingrese el usuario del administrador: (ingrese 3 para cancelar la operación)&quot;))
+                    self.usuario(nuevo_usuario)
+
+                    if nuevo_usuario == &quot;3&quot; :
+                        aux = False
+                        return False
+
+                    for i in range(len(self._df_cliente)):
+                        if self._df_cliente.iloc[i][1] == nuevo_usuario :
+                            print(&quot;El usuario ya está en uso, ingrese uno nuevo.&quot;)
+                            break
+                        if i == len(self._df_cliente) - 1:
+                            aux = False 
+
+                nuevo_usuario = str(input(&quot;Ingrese el usuario del cliente: &quot;))
+                self.usuario(nuevo_usuario)
+
+                nuevo_password = str(input(&quot;Ingrese la contraseña del cliente: &quot;))
+                self.password(nuevo_password)
+
+                nuevo_direccion = str(input(&quot;Ingrese la dirección del cliente: &quot;))
+                self.direccion(nuevo_direccion)
+
+                nuevo_telefono = str(input(&quot;Ingrese teléfono del cliente: &quot;))
+                self.telefono(nuevo_telefono)
+
+                nuevo_email = str(input(&quot;Ingrese email del cliente: &quot;))
+                self.email(nuevo_email)
+
+                nueva_tarjeta = str(input(&quot;Ingrese el número de tarjeta del cliente: &quot;))
+                self.tarjeta(nueva_tarjeta)
+
+                print(&quot;Los datos ingresados fueron:&quot;)
+                print(self.nombre)
+                print(self.usuario)
+                print(self.password)
+                print(self.direccion)
+                print(self.telefono)
+                print(self.email)
+                print(self.tarjeta)
+
+                print(&quot;Si hay algún dato erroneo, favor de ingresar 1, si todos los datos son correctos ingresar 2&quot;)
+
+                while(True):
+                    y = int(input(&quot;:&quot;))
+                    if y == 1:
+                        print(&quot;Regresando al menú de opciones de usuario&quot;)
+                        break
+                    elif y == 2:
+                         df_aux_1 = pd.DataFrame({&quot;Nombre&quot;:self.nombre ,
+                                          &quot;usuario&quot;: self.usuario,
+                                          &quot;password&quot;: self.password,
+                                          &quot;dirección&quot;: self.direccion,
+                                          &quot;teléfono&quot;: self.telefono,
+                                          &quot;email&quot;: self.email,
+                                          &quot;núm tarjeta&quot;: self.tarjeta})
+                         df_aux_2 = pd.concat([self._df_cliente, df_aux_1])
+                         self._df_cliente = df_aux_2
+                    else :
+                        print(&quot;Dato no válido. Regresando a la opción de selección.&quot;)
+
+             elif x == 2:
+                break
+             else :
+                 print(&quot;Dato no válido. Regresando a la opción de selección.&quot;)
+</code></pre>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
