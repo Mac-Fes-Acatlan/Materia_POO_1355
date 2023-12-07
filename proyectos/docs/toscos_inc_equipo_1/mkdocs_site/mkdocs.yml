@@ -1,0 +1,6 @@
+site_name: Banco Profesional Toscos Inc.
+
+nav:
+  - Desarrollo del proyecto: 'index.md'
+  - Acerca del proyecto: 'acerca_de.md'
+  - Instrucciones del proyecto: 'Instrucciones.md'
