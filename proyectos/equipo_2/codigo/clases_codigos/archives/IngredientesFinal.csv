@@ -1,0 +1,14 @@
+ID,Nombre,Categoria,Cantidad,Precio venta, Precio compra
+1,Carne molida,Proteina,50.8,45,150
+2,Pan de hamburguesa,Pan,19.95,5,80
+3,Cebolla,Verdura,10.0,3,60
+4,Queso,Lacteo,14.95,10,160
+5,Queso cheddar,Lacteo,15.0,15,200
+6,Cebolla caramelizada,Condimento,10.0,5,80
+7,Salsa BBQ,Salsa,15.0,10,100
+8,Portobello asado,Seta,10.0,10,140
+9,Pan integral,Pan,20.0,5,100
+10,Queso feta,Lacteo,10.0,20,500
+11,Filete de pescado,Proteina,15.0,30,120
+12,Pechuga de pollo,Proteina,30.0,30,120
+13,Refresco,Bebida,149.5,25,15
